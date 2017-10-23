@@ -1,7 +1,5 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
 
 import org.newdawn.slick.GameContainer;
@@ -10,8 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.EmptyTransition;
-import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 
 
 /**
@@ -37,10 +33,10 @@ class GameOverState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		timer = 300f;
 		
-		if ( ((BounceGame)game).didWin )
-			endSound =  ResourceManager.getSound(BounceGame.CLAP_SND);
+		if ( ((Breakout)game).didWin )
+			endSound =  ResourceManager.getSound(Breakout.CLAP_SND);
 		else
-			endSound = ResourceManager.getSound(BounceGame.KAZOO_SND);
+			endSound = ResourceManager.getSound(Breakout.KAZOO_SND);
 		
 		endSound.play();
 	}
@@ -55,7 +51,7 @@ class GameOverState extends BasicGameState {
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		BounceGame bg = (BounceGame)game;
+		Breakout bg = (Breakout)game;
 		
 		bg.belt1.render(g);
 		bg.belt2.render(g);
@@ -73,12 +69,12 @@ class GameOverState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		BounceGame bg = (BounceGame)game;
+		Breakout bg = (Breakout)game;
 		float dt = delta / 16.666666666666667f;
 		
 		timer -= dt;
 		if (timer <= 0)
-			game.enterState(BounceGame.STARTUPSTATE);
+			game.enterState(Breakout.STARTUPSTATE);
 
 		bg.belt1.update(dt);
 		bg.belt2.update(dt);
@@ -91,7 +87,7 @@ class GameOverState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return BounceGame.GAMEOVERSTATE;
+		return Breakout.GAMEOVERSTATE;
 	}
 	
 }

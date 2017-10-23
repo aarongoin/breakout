@@ -1,7 +1,5 @@
 package bounce;
 
-import java.util.Iterator;
-
 import jig.ResourceManager;
 import jig.Vector;
 
@@ -32,12 +30,12 @@ class PlayingState extends BasicGameState {
 		
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		background = ResourceManager.getSound(BounceGame.RECORD_SND);
+		background = ResourceManager.getSound(Breakout.RECORD_SND);
 	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		BounceGame bg = (BounceGame) game;
+		Breakout bg = (Breakout) game;
 		container.setSoundOn(true);
 		bounces = 0;
 		prepareLevel(bg);
@@ -52,13 +50,13 @@ class PlayingState extends BasicGameState {
 		background.stop();
 	}
 	
-	private void resetBall(BounceGame bg) {
+	private void resetBall(Breakout bg) {
 		bg.ball.setPosition( bg.paddle.getPosition().add( bg.paddle.getNormal().scale(100) ) );
 		bg.ball.setVelocity(bg.paddle.getNormal().scale(-8f));
 		bg.sun.addChild(bg.ball);
 	}
 	
-	public void updateScore(BounceGame bg) {
+	public void updateScore(Breakout bg) {
 		bg.score += bg.belt1.destroyed * 3;
 		bg.score += bg.belt2.destroyed * 2;
 		bg.score += bg.belt3.destroyed * 1;
@@ -68,7 +66,7 @@ class PlayingState extends BasicGameState {
 		bg.belt3.destroyed = 0;
 	}
 	
-	private void prepareLevel(BounceGame bg) {
+	private void prepareLevel(Breakout bg) {
 		resetBall(bg);
 		bg.sun.removeDebris();
 		
@@ -119,12 +117,12 @@ class PlayingState extends BasicGameState {
 			bg.belt2.generateAsteroids("S", 30);
 			break;
 		}
-		ResourceManager.getSound(BounceGame.GONG_SND).play();
+		ResourceManager.getSound(Breakout.GONG_SND).play();
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		BounceGame bg = (BounceGame)game;
+		Breakout bg = (Breakout)game;
 		
 		bg.sun.render(g);
 		bg.belt1.render(g);
@@ -140,7 +138,7 @@ class PlayingState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		BounceGame bg = (BounceGame) game;
+		Breakout bg = (Breakout) game;
 		float dt = delta / 16.666666666666667f;
 		
 		//System.out.print("Delta: " + delta + " dt: " + dt + "\n\n");
@@ -148,7 +146,7 @@ class PlayingState extends BasicGameState {
 		Input input = container.getInput();
 		
 		if (input.isKeyDown(Input.KEY_0))
-			bg.enterState(bg.STARTUPSTATE);
+			bg.enterState(Breakout.STARTUPSTATE);
 
 		bg.paddle.update(new Vector(input.getMouseX(), input.getMouseY()));
 				
@@ -162,7 +160,7 @@ class PlayingState extends BasicGameState {
 		if (bg.belt1.getCount() + bg.belt2.getCount() + bg.belt3.getCount() == 0) {
 			if (bg.getLevel() == 9) {
 				bg.didWin = true;
-				bg.enterState(bg.GAMEOVERSTATE);
+				bg.enterState(Breakout.GAMEOVERSTATE);
 			} else {
 				bg.setLevel(bg.getLevel() + 1);
 				prepareLevel(bg);
@@ -179,7 +177,7 @@ class PlayingState extends BasicGameState {
 		bg.belt2.beltCollisions(bg.belt3);
 		
 		if (bg.ball.getLives() == 0) 
-			bg.enterState(bg.GAMEOVERSTATE);
+			bg.enterState(Breakout.GAMEOVERSTATE);
 		else if (bg.sun.resetBall)
 			resetBall(bg);
 			
@@ -187,7 +185,7 @@ class PlayingState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return BounceGame.PLAYINGSTATE;
+		return Breakout.PLAYINGSTATE;
 	}
 	
 }

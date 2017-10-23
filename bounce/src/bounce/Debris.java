@@ -13,13 +13,13 @@ public class Debris extends FreeBody {
 		type = t;
 		switch (type) {
 			case "S":
-				addImageWithBoundingBox(ResourceManager.getImage(BounceGame.DEBRIS_S_RSC));
+				addImageWithBoundingBox(ResourceManager.getImage(Breakout.DEBRIS_S_RSC));
 				break;
 			case "M":
-				addImageWithBoundingBox(ResourceManager.getImage(BounceGame.DEBRIS_M_RSC));
+				addImageWithBoundingBox(ResourceManager.getImage(Breakout.DEBRIS_M_RSC));
 				break;
 			case "C":
-				addImageWithBoundingBox(ResourceManager.getImage(BounceGame.DEBRIS_C_RSC));
+				addImageWithBoundingBox(ResourceManager.getImage(Breakout.DEBRIS_C_RSC));
 				break;
 		}
 	}

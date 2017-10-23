@@ -1,17 +1,11 @@
 package bounce;
 
-import java.util.Iterator;
-
-import jig.ResourceManager;
 import jig.Vector;
-
-import java.awt.Font;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -33,7 +27,7 @@ class StartUpState extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
-		BounceGame bg = (BounceGame)game;
+		Breakout bg = (Breakout)game;
 		
 		container.setSoundOn(false);
 		
@@ -45,7 +39,7 @@ class StartUpState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		BounceGame bg = (BounceGame)game;
+		Breakout bg = (Breakout)game;
 		
 		//bg.paddle.render(g);
 		bg.sun.render(g);
@@ -67,21 +61,23 @@ class StartUpState extends BasicGameState {
 		g.drawString("Use NUM KEYS 1-9 to select a level.", bg.ScreenWidth - 365, 25);
 		g.drawString("Use NUM KEY 0 to return to this screen.", bg.ScreenWidth - 395, 750);
 		
-		g.drawString("Level " + bg.level, bg.ScreenWidth / 2 - 28, bg.ScreenHeight / 2 - 60);
+		g.setFont(bg.subtitle);
+		g.drawString("Level " + bg.level, bg.ScreenWidth / 2 - 40, bg.ScreenHeight / 2 - 60);
+		g.setFont(bg.text);
 		g.drawString("press space to play", bg.ScreenWidth / 2 - 75, bg.ScreenHeight / 2 + 30);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
-		BounceGame bg = (BounceGame) game;
+		Breakout bg = (Breakout) game;
 		float dt = delta / 16.666666666666667f;
 		
 		Input input = container.getInput();
 		bg.paddle.update(new Vector(input.getMouseX(), input.getMouseY()));
 
 		if (input.isKeyDown(Input.KEY_SPACE))
-			bg.enterState(BounceGame.PLAYINGSTATE);
+			bg.enterState(Breakout.PLAYINGSTATE);
 		else if (input.isKeyDown(Input.KEY_1))
 			bg.setLevel(1);
 		else if (input.isKeyDown(Input.KEY_2))
@@ -113,7 +109,7 @@ class StartUpState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return BounceGame.STARTUPSTATE;
+		return Breakout.STARTUPSTATE;
 	}
 	
 }

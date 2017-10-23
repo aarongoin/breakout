@@ -1,11 +1,7 @@
 package bounce;
 
-import java.util.ArrayList;
-
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-import jig.ConvexPolygon;
 import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
@@ -20,7 +16,7 @@ public class Sun extends Attractor {
 		super(pos, g);
 		
 		body = new Entity(pos);
-		body.addImageWithBoundingBox( ResourceManager.getImage(BounceGame.SUN_RSC) );
+		body.addImageWithBoundingBox( ResourceManager.getImage(Breakout.SUN_RSC) );
 		
 		resetBall = false;
 	}
@@ -48,7 +44,7 @@ public class Sun extends Attractor {
 			ball.update(dt);
 	
 			if ( Physics.didCollide( body.getPosition(), ball.getPosition(), 20f, ball.getRadius() ) ) {
-				ResourceManager.getSound(BounceGame.RICOCHET_SND).play(1f, 0.8f);
+				ResourceManager.getSound(Breakout.RICOCHET_SND).play(1f, 0.8f);
 				ball.setLives(ball.getLives() - 1);
 				if (ball.getLives() > 0) {
 					resetBall = true;

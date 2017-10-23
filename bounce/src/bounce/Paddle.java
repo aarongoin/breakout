@@ -1,7 +1,5 @@
 package bounce;
 
-import org.newdawn.slick.Image;
-
 import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
@@ -17,7 +15,7 @@ public class Paddle extends Entity {
 
 	public Paddle(Vector pos, float o, float e) {
 		super(pos.getX(), pos.getY());
-		addImageWithBoundingBox(ResourceManager.getImage(BounceGame.PADDLE_RSC), new Vector(0f, -o));
+		addImageWithBoundingBox(ResourceManager.getImage(Breakout.PADDLE_RSC), new Vector(0f, -o));
 		
 		offset = o;
 		elasticity = e;
@@ -35,12 +33,10 @@ public class Paddle extends Entity {
 	
 	public void reflectBall(FreeBody ball) {
 		Vector normal = getNormal();
-		
-		double theta = normal.angleTo(ball.getVelocity()) + 90;
-		
+				
 		ball.setVelocity( normal.scale(ball.getVelocity().length() * elasticity) );
 		
-		ResourceManager.getSound(BounceGame.CORK_SND).play();
+		ResourceManager.getSound(Breakout.CORK_SND).play();
 	}
 
 }

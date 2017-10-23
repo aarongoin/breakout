@@ -4,5 +4,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/jig"/>
 	<classpathentry exported="true" kind="lib" path="/lib/slick.jar"/>
+	<classpathentry kind="lib" path="/Users/Aaron/Dev/CS447-Workspace/JIG/lib/lwjgl-2.9.0/jar/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/Aaron/Dev/CS447-Workspace/JIG/lib/lwjgl-2.9.0/native/macosx"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
