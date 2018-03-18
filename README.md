@@ -5,6 +5,12 @@ This is a different take on the the Breakout genre, with the bricks being astero
 
 The graphics are simplistic, and were made by myself. Sound is fairly minimal.
 
+![Breakout gameplay](https://aarongoin.github.io/res/2017-12-09/breakout.gif)
+
+## Download
+
+Get a pre-made JAR file [here](https://aarongoin.github.io/res/2017-12-09/Breakout.jar)
+
 ## External Resources
 
 Sounds were acquired at [SoundBible.com](http://soundbible.com) which provides royalty-free sound effects.
